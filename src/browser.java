@@ -50,6 +50,7 @@ public class browser extends JDialog {
                 //String url=txtUrl.getText();
                 btnAtras.setEnabled(true);
                 onEnter();
+
             }
         });
 
@@ -59,6 +60,7 @@ public class browser extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 btnDelante.setEnabled(true);
                 onAtras();
+
             }
         });
 
@@ -77,7 +79,12 @@ public class browser extends JDialog {
         String url=txtUrl.getText();
         if(url.substring(0,4).equals("www.")&& url.substring(url.length()-4,url.length()).equals(".com")){
             visitados.push(txtUrl.getText());
-            System.out.println(visitados);
+            while (back.size()!=0){
+                back.pop();
+            }
+            btnDelante.setEnabled(false);
+
+            System.out.println(back);
             recorrerPila();
         }else{
             JOptionPane.showMessageDialog(null,"ERROR, INGRESE LA URL CORRECTAMENTE");
@@ -126,6 +133,7 @@ public class browser extends JDialog {
             cadena = cadena + vis.substring(4, vis.length() - 4) + ", ";
         }
         descripcion.setText(cadena);
+
     }
 
     //CUANDO PRESIONAMOS SALIR
